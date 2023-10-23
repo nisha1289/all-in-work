@@ -131,7 +131,7 @@ async def account_login(bot: Client, m: Message):
       t =xv[y].strip()
       html3 = s.get("https://api.penpencil.xyz/v2/batches/"+raw_text3+"/subject/"+raw_text4+"/contents?page=1&tag="+t+"&contentType=videos",headers=headers).content
       ff = json.loads(html3)
-      tpage = (ff["paginate"])["totalCount"]//ff["paginate"]["limit"]+2
+      tpage = int(ff["paginate"])["totalCount"]//ff["paginate"]["limit"]+2
       print("Total page:",tpage)
       for i in range(1,tpage)[::-1]:
         html4 = s.get("https://api.penpencil.xyz/v2/batches/"+raw_text3+"/subject/"+raw_text4+"/contents?page="+str(i)+"&tag="+t+"&contentType=videos",headers=headers).json()["data"]
